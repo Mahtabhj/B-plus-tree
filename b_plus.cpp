@@ -10,7 +10,7 @@
 using namespace std;
 
 int totalDataSize;
-string testWord = "মঠ";
+string testWord ;
 string meaning;
 bool found = false;
 
@@ -197,18 +197,18 @@ void input(void)
     }
 }
 
-void traverse(Node *node)
-{
-    cout << endl;
-    if(node[0].isLeaf) cout << "Leaf" << endl;
-    for(int i = 0; i < node[0].key.size(); i++)
-        cout << node[0].key[i].english << " ..> " << node[0].key[i].bangla << "   ";
-    cout << endl;
+// void traverse(Node *node)
+// {
+//     cout << endl;
+//     if(node[0].isLeaf) cout << "Leaf" << endl;
+//     for(int i = 0; i < node[0].key.size(); i++)
+//         cout << node[0].key[i].english << " ..> " << node[0].key[i].bangla << "   ";
+//     cout << endl;
 
-    if(node[0].child1 != NULL) traverse(node[0].child1);
-    if(node[0].child2 != NULL) traverse(node[0].child2);
-    if(node[0].child3 != NULL) traverse(node[0].child3);
-}
+//     if(node[0].child1 != NULL) traverse(node[0].child1);
+//     if(node[0].child2 != NULL) traverse(node[0].child2);
+//     if(node[0].child3 != NULL) traverse(node[0].child3);
+// }
 
 void search2(Node *node)
 {
@@ -240,10 +240,10 @@ void search2(Node *node)
 void search(Node *node)
 {
     for(int i = 0; i < node[0].key.size(); i++)
-        if(node[0].key[i].english == testWord && node[0].isLeaf)
+        if(node[0].key[i].bangla == testWord && node[0].isLeaf)
         {
-            cout<<testWord;
-            cout << testWord << "  means,  " << node[0].key[i].bangla << endl;
+            
+            cout << testWord << "  ==== " << node[0].key[i].english << endl;
             found = true;
         }
 
@@ -255,15 +255,15 @@ void search(Node *node)
 int main(void)
 {
     FILE *fp;
+    cin>>testWord;
     freopen("input.txt","r",stdin);
     freopen("output.txt","w",stdout);
     root = createNewNode();
     input();
-    traverse(root);
-
-    cout<<testWord;
+    // traverse(root);
     search(root);
     if(!found) cout << "Sorry" << endl << "Not Found" << endl;
     //else cout << testWord << ".. means, -  " << meaning << endl;
     return 0;
 }
+
